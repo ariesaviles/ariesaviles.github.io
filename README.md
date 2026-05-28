@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+# ariesaviles.com
 
-## Getting Started
+Personal portfolio — built with Next.js 14, TypeScript, Framer Motion, and Tailwind CSS. Deployed to GitHub Pages via GitHub Actions.
 
-First, run the development server:
+## Concept
+
+**Device Stage** — a two-column layout where hovering a project activates browser and mobile device frame previews, reflecting a fullstack + mobile engineering background. Pointer-driven interactions throughout with a custom cursor.
+
+## Stack
+
+- **Framework** — [Next.js 14](https://nextjs.org) (App Router, static export)
+- **Language** — TypeScript
+- **Animations** — [Framer Motion](https://www.framer.com/motion/)
+- **Styling** — [Tailwind CSS](https://tailwindcss.com)
+- **Deployment** — GitHub Pages via GitHub Actions
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Customizing
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Projects
 
-## Learn More
+Edit `lib/projects.ts` to add your own work. Each project takes:
 
-To learn more about Next.js, take a look at the following resources:
+```ts
+{
+  id: string           // unique slug
+  index: number        // display order
+  title: string
+  tagline: string      // one-liner shown in the list
+  description: string  // longer description (used in future detail view)
+  tech: string[]       // tech badges shown on hover
+  type: 'web' | 'mobile' | 'both'  // controls which device frame activates
+  url?: string         // live site link
+  github?: string      // repo link
+  year: number
+  role: string
+  desktopImage?: string  // path relative to /public, e.g. /projects/foo-desktop.png
+  mobileImage?: string   // path relative to /public, e.g. /projects/foo-mobile.png
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Project screenshots
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Drop screenshots into `public/projects/` and reference them in `lib/projects.ts`:
 
-## Deploy on Vercel
+```
+public/
+  projects/
+    my-project-desktop.png   # ~1280×800 recommended
+    my-project-mobile.png    # ~390×844 recommended (iPhone aspect ratio)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If no image is set, the frame renders a styled placeholder with the project name.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Personal info
+
+| File | What to update |
+|---|---|
+| `app/layout.tsx` | Page title, meta description, OG/Twitter tags |
+| `components/Hero.tsx` | Name, title, tagline, availability status |
+| `components/About.tsx` | Bio paragraphs, skills list |
+| `components/Contact.tsx` | Email, GitHub, LinkedIn links |
+| `components/Footer.tsx` | Name in copyright |
+| `components/Nav.tsx` | Your name in the top-left |
+
+## Deployment
+
+Pushes to `main` automatically deploy to GitHub Pages via `.github/workflows/nextjs.yml`. The custom domain is set via `CNAME` (`ariesaviles.com`).
+
+To deploy manually:
+
+```bash
+npm run build   # outputs to /out
+```
+
+Then push — GitHub Actions handles the rest.
+
+## Project structure
+
+```
+├── app/
+│   ├── globals.css       # Base styles, custom cursor, scrollbar
+│   ├── layout.tsx        # Root layout, fonts, metadata
+│   └── page.tsx          # Page composition
+├── components/
+│   ├── CustomCursor.tsx  # Dot + ring cursor with spring physics
+│   ├── Nav.tsx           # Sticky nav, blur on scroll
+│   ├── Hero.tsx          # Full-screen intro section
+│   ├── ProjectsSection.tsx  # Two-column project list + device stage
+│   ├── DeviceStage.tsx   # Orchestrates both device frames
+│   ├── BrowserFrame.tsx  # Browser chrome mockup
+│   ├── MobileFrame.tsx   # Phone mockup with status bar
+│   ├── About.tsx         # Bio + skills
+│   ├── Contact.tsx       # Contact links
+│   └── Footer.tsx
+├── lib/
+│   └── projects.ts       # All project data lives here
+└── public/
+    └── projects/         # Drop screenshot images here
+```

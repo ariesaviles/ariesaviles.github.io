@@ -1,46 +1,58 @@
-@import url("https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --cursor-size: 12px;
+  --cursor-ring-size: 36px;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
+/* Hide native cursor when custom cursor is present */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
   }
-} */
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #fafaf9;
+  color: #1c1917;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@font-face {
-  font-family: "Bogart";
-  src: url("/fonts/Bogart-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
+/* Custom scrollbar — minimal */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a29e;
 }
 
-@font-face {
-  font-family: "Bogart";
-  src: url("/fonts/Bogart-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
+/* Selection */
+::selection {
+  background: #1c1917;
+  color: #fafaf9;
 }
 
-@font-face {
-  font-family: "Bogart";
-  src: url("/fonts/Bogart-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
+/* Device frame inner content clipping */
+.frame-inner {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Smooth image fade-in */
+.frame-image {
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }

@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Bogart";
+  src: url("/fonts/Bogart-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Bogart";
+  src: url("/fonts/Bogart-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Bogart";
+  src: url("/fonts/Bogart-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@theme {
+  --font-mono: "Berkeley Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+
+  --color-bg:      #0c0c0c;
+  --color-surface: #111111;
+  --color-border:  #2a2a2a;
+  --color-text:    #d4d2cd;
+  --color-muted:   #555550;
+  --color-accent:  #e8a87c;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #f7f6f1;
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+* {
+  box-sizing: border-box;
+}

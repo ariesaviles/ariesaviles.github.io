@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+# ariesaviles.github.io
+
+Personal portfolio — notebook-style with an interactive swim lane timeline.
+
+## Stack
+
+- [Astro](https://astro.build) — static site framework
+- [React](https://react.dev) — interactive component islands
+- [Tailwind CSS](https://tailwindcss.com) — utility-first styling
+- [Framer Motion](https://www.framer.com/motion/) — animations
+- [D3.js](https://d3js.org) — swim lane timeline visualization
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:4321](http://localhost:4321).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run build
+npm run preview
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  components/   # React component islands
+  pages/        # Astro pages (index.astro is the entry point)
+  styles/       # Global CSS
+public/
+  fonts/        # Bogart typeface (Bold, Medium, Semibold)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Deployed to GitHub Pages via the `CNAME` file pointing to the custom domain. Push to `main` to deploy.
